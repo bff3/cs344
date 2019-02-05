@@ -1,0 +1,31 @@
+Hill Climbing
+  - 1000 data points
+  - Delta = 0.1
+    - Avg time hill climbing: 0.01730513000488281
+    - direct linear correlation with start value distance to solution
+      and time to find solution
+  - for Delta = 5.0
+    - Average = 0.00034482002258300
+Simulated Annealing
+  - 1000 data points
+  - Delta = 0.1
+    - Average time simulated annealing: 0.00512291288375854
+    - no correlation between start point and time to solve
+  - Delta = 5.0
+    - Average time to complete = 0.00505076980590820
+
+2.1
+  a.
+    Both solve the problem well
+  b.
+    The hill climbing algorithm can be faster if the initial value is close
+    to the solution or if the Delta is higher. The simulated_annealing algorithm
+    had an average time to solve of 0.005(ms?) regardless of the Delta value
+  c.
+    The starting value effected the time to solve for the hill climbing algorithm
+    but not the simulated annealing
+  d.
+    Changing the delta has no affect on simulated annealing but increasing the delta
+    causes an increase in solution speed for the hill Climbing. <Why EXPAND>
+  e.
+    ----
