@@ -7,7 +7,7 @@ The function is a linear function  with a single, discontinuous max value
 @version 6feb2013
 """
 import sys
-sys.path.append('/home/ben/cs/cs344')
+sys.path.append('/home/bff3/cs344')
 import time
 from tools.aima.search import Problem, hill_climbing, simulated_annealing, \
     exp_schedule, genetic_search

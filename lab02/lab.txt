@@ -26,6 +26,12 @@ Simulated Annealing
     but not the simulated annealing
   d.
     Changing the delta has no affect on simulated annealing but increasing the delta
-    causes an increase in solution speed for the hill Climbing. <Why EXPAND>
+    causes an increase in solution speed for the hill Climbing. This is because
+    Delta determines how many steps the hill climbing algorithm has to take to get
+    to the solution. Because the SA algorithm has probabilistic movement determined
+    by the exponential function, the cooling period determines the solution time
+    more than the step size in this case anyway.
   e.
-    ----
+    The exp schedule determines the nature of the exponential curve which describes
+    the rate at which the SA algorithm "cools" or how the probabilistic moves become
+    less extreme.
