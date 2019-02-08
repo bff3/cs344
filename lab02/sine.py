@@ -1,10 +1,24 @@
 from math import sin, fabs
+import sys
+sys.path.append('/home/ben/cs/cs344')
+from tools.aima.search import Problem
+import matplotlib.pyplot as plt
+class LinearGrowthSin(Problem):
+    """
+    State: x value for the abs function variant f(x)
+    Move: a new x value delta steps from the current x (in both directions)
+    """
 
-def LinearGrowthSin(x):
-    return fabs(x*sin(x))
+    def __init__(self, initial, maximum=30.0, delta=0.001):
+        self.initial = initial
+        self.maximum = maximum
+        self.delta = delta
 
-if __name__ == '__main__':
-    for x in range(0,1000):
-        x /= 100
-        f = open("myfile.csv", "a")
-        f.write(str(x)+","+str(LinearGrowthSin(x))+"\n")
+    def actions(self, state):
+        return [state + self.delta, state - self.delta]
+
+    def result(self, stateIgnored, x):
+        return x
+
+    def value(self, x):
+        return fabs(x*sin(x))
