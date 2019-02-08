@@ -1,8 +1,5 @@
 from math import sin, fabs
-import sys
-sys.path.append('/home/ben/cs/cs344')
 from tools.aima.search import Problem
-import matplotlib.pyplot as plt
 class LinearGrowthSin(Problem):
     """
     State: x value for the abs function variant f(x)

@@ -47,9 +47,22 @@ Simulated Annealing
     between humps as easy. The hill-climbing benefited slightly from a larger delta,
     but ultimately if the initial point was well within the hump, it would stay there.
   d.
-    Absolute max and min are 29.8 and 0.0 respectively.
-
-
+    Absolute max and min are 29.8 and 0.0 respectively. Hill-climbing only reaches
+    the max if the initial value is within the final hump. The SA algorithm didn't
+    always reach the max value but had more solutions in the 15-25 bin, where
+    the hill_climbing was more uniform.
+2.3
+  a.
+    Hill-climbing more consistently got the highest value.
+  b.
+    with a sample size of 1000:
+    Average hill-climbing solution: 14.636383048017429
+    Average simulated annealing solution:   8.894313962922826
+  c.
+    Since there are 10 maxima in this function, there is approximately a 1:10 chance every Time
+    the algorithm restarts that the initial value will be within the bounds of the largest hump.
+    The simulated annealing algorithm has the chance of jumping out of a larger maxima
+    into a lower maxima.
 2.4
   a.
     Simulated annealing because hill-climbing will always pick the best local
@@ -58,3 +71,4 @@ Simulated Annealing
     since each solution is a float you could store something on the order of
     2*2^30 – 8*2^30 solutions. <Time to execute though>
   c.
+    Beam-search is best first whereas random restart 

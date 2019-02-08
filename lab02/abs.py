@@ -6,8 +6,6 @@ The function is a linear function  with a single, discontinuous max value
 @author: kvlinden
 @version 6feb2013
 """
-import sys
-sys.path.append('/home/ben/cs/cs344')
 import time
 from tools.aima.search import Problem, hill_climbing, simulated_annealing, \
     exp_schedule, genetic_search
@@ -44,11 +42,11 @@ if __name__ == '__main__':
 
     # Formulate a problem with a 2D hill function and a single maximum value.
     maximum = 30
-    #initial = randrange(0, maximum)
     HCt = []
     SAt = []
-    for initial in range(maximum):
-        p = LinearGrowthSin(initial, maximum, delta=5)
+    for _ in range(1000):
+        initial = randrange(0, maximum)
+        p = LinearGrowthSin(initial, maximum, delta=.001)
         print('Initial                      x: ' + str(p.initial)
               + '\t\tvalue: ' + str(p.value(initial))
               )
@@ -62,7 +60,9 @@ if __name__ == '__main__':
         tDelta = time.time() - t
         print("time to solve:\t" + str(tDelta))
         #HCt.append((initial,tDelta))
-        HCt.append((initial, p.value(hill_solution)))
+        HCt.append((initial, p.value(hill_solution))) #I know in random-restart
+        #you arn't supposed to store the solutions in memory, but I want to keep
+        #them for sake of graphing
         # Solve the problem using simulated annealing.
         t = time.time()
         annealing_solution = simulated_annealing(
@@ -75,9 +75,12 @@ if __name__ == '__main__':
         tDelta = time.time() - t
         SAt.append((initial, p.value(annealing_solution)))
         print("time to solve:\t" + str(tDelta))
-    x = arange(0.0, maximum, 0.01)
-    print(max(abs(x * sin(x))))
-    print(min(abs(x * sin(x))))
-    x, y = zip(*SAt)
-    plt.scatter(*(x,y))
-    plt.show()
+    x1, y1 = zip(*HCt)
+    x2, y2 = zip(*SAt)
+    #plt.scatter(*(x,y))
+    print("Best hill-climbing solution:\t" + str(max(y1)))
+    print("Best Simulated-annealing solution:\t" + str(max(y2)))
+    print("Average hill-climbing solution:\t" + str(sum(y1)/len(y1)))
+    print("Average simulated annealing solution:\t" + str(sum(y2)/len(y2)))
+#    plt.hist(y1)
+#    plt.show()
