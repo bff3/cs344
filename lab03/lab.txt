@@ -1,0 +1,16 @@
+3.1
+  a.
+    - depth_first_graph_search failed the easy puzzles
+    - AC3 solved easy in 0.03242826461791992 s
+    - backtracking_search took 7.5586700439453125 s to solve easy
+    - min_conflicts failed
+  b.
+    i.
+      with mrv it took the backtracking_search 104.27270865440369 s to complete
+      the easy puzzle
+    ii.
+      with forward-checking and mrv the backtracking_search took 0.005750417709350586 s
+      to complete the easy puzzle, 0.00821995735168457 s to complete the hard puzzle,
+      and 0.03484344482421875 s to complete the hardest puzzle.
+
+3.2
