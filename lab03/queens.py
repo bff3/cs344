@@ -10,6 +10,7 @@ from tools.aima.csp import backtracking_search, NQueensCSP, min_conflicts, mrv, 
     forward_checking, AC3
 from tools.aima.search import depth_first_graph_search
 import logging
+from time import time
 
 # 1. Set up the problem.
 n = 4
@@ -17,12 +18,22 @@ problem = NQueensCSP(n)
 
 # 2. Solve the problem.
 # There is a bug in the DFS code (even for 1-queens), so skip this one.
-#solution = depth_first_graph_search(problem) 
-solution = AC3(problem); 
-#solution = backtracking_search(problem)
-#solution = min_conflicts(problem)
+#solution = depth_first_graph_search(problem)
 
-# 3. Print the results.  
+# t0 = time()
+# solution = AC3(problem);
+# t = time() - t0
+
+# t0 = time()
+# solution = backtracking_search(problem, select_unassigned_variable=mrv, inference=forward_checking)
+# t = time() - t0
+
+t0 = time()
+solution = min_conflicts(problem, max_steps=1)
+t = time() - t0
+
+# 3. Print the results.
+print("Time to complete:\t" + str(t))
 print
 # Handle AC3 solutions (boolean values) first, they behave differently.
 if type(solution) is bool:
@@ -40,5 +51,3 @@ elif problem.goal_test(solution):
 else:
     print('Failed - domains: ' + str(problem.curr_domains))
     problem.display(problem.infer_assignment())
-
-

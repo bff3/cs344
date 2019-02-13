@@ -14,3 +14,7 @@
       and 0.03484344482421875 s to complete the hardest puzzle.
 
 3.2
+  min_conflicts had the fastest solution rate
+
+  min_conflicts requires at least 1 step, but the size of the solution space
+  determines the likelihood of a solution being stumbled upon.
