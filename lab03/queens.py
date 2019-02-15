@@ -24,13 +24,16 @@ problem = NQueensCSP(n)
 # solution = AC3(problem);
 # t = time() - t0
 
-# t0 = time()
-# solution = backtracking_search(problem, select_unassigned_variable=mrv, inference=forward_checking)
-# t = time() - t0
-
 t0 = time()
-solution = min_conflicts(problem, max_steps=1)
+#solution = backtracking_search(problem, select_unassigned_variable=mrv, inference=forward_checking)
+#solution = backtracking_search(problem, inference=forward_checking)
+#solution = backtracking_search(problem, select_unassigned_variable=mrv)
+solution = backtracking_search(problem)
 t = time() - t0
+
+# t0 = time()
+# solution = min_conflicts(problem, max_steps=1)
+# t = time() - t0
 
 # 3. Print the results.
 print("Time to complete:\t" + str(t))
