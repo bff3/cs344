@@ -5,9 +5,9 @@ These calls are mostly copied/adapted from AIMA Python.
 @author: kvlinden
 @version 14feb2013
 '''
-from tools.aima.csp import Sudoku, easy1, AC3, harder1, backtracking_search, mrv, \
+from aima.csp import Sudoku, easy1, AC3, harder1, backtracking_search, mrv, \
     forward_checking, min_conflicts
-from tools.aima.search import depth_first_graph_search
+from aima.search import depth_first_graph_search
 from time import time
 
 # 1. Set up the puzzle.
