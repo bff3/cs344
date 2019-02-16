@@ -1,71 +1,81 @@
 3.1
   a.
     - depth_first_graph_search failed the easy puzzles
-    - AC3 solved easy in 0.03242826461791992 s
-    - backtracking_search took 7.5586700439453125 s to solve easy
+    - AC3 solved easy in 0.03 s
+    - backtracking_search took 7.6 s to solve easy
     - min_conflicts failed
+
+    - dfs failed because the search space is too large.
+    - AC3 works on constraints where two domains must be considered, the easy sudoku puzzle can be solved but
+      not the hard ones.
+    - backtracking works because it can narrow down the search space by eliminating branches that cannot result
+      in solutions, but it only works in a timely manner on the harder problems if forward-checking is used
+    - min_conflicts doesn't work because the solution space has local maxima that trap the algorithm early.
+
   b.
     i.
-      with mrv it took the backtracking_search 104.27270865440369 s to complete
+      with mrv it took the backtracking_search 104 s to complete
       the easy puzzle
     ii.
-      with forward-checking and mrv the backtracking_search took 0.005750417709350586 s
-      to complete the easy puzzle, 0.00821995735168457 s to complete the hard puzzle,
-      and 0.03484344482421875 s to complete the hardest puzzle.
+      with forward-checking and mrv the backtracking_search took 0.006s
+      to complete the easy puzzle, 0.008 s to complete the hard puzzle,
+      and 0.03 s to complete the hardest puzzle.
+
+    mrv works well because it forces the algorithm to search in the most constrained search space first.
+    Forward checking terminates a search when it detects variables with no legal values.
 
 3.2
-  min_conflicts had the fastest solution rate
+    a.
+        - AC3: n/a
+          AC3 can't solve this problem because AC3 only allows for two-way neighbors, since all queens on the
+          board could attack each other, any queen could be a neighbor of any other. It fails for a similar
+          reason that it fails for the map coloring problem. Q1 can't conflict with Q2, Q3,... and  Q2 can't conflict
+          with Q3. A move where Q1 doesn't conflict with Q2 and Q3 could still result in Q2 conflicting with Q3.
+        - Backtracking: n=300 took 6.5 seconds
+          Backtracking does well because it eliminates board states which have one illegal part of the state, so that
+          the algorithm doesn't unnecessarily search through more illegal board states.
+        - min_conflicts: n=2000 took 5.4 seconds
+          min conflicts works the best because solutions are densely distributed throughout the state space (Wikipedia)
+          It's easy for the algorithm to climb toward a solution without getting caught in a local maxima.
 
-  min_conflicts requires at least 1 step, but the size of the solution space
-  determines the likelihood of a solution being stumbled upon.
 
-solution = backtracking_search(problem, select_unassigned_variable=mrv, inference=forward_checking)
-Time to complete:	0.00018930435180664062
+    b.
+        Backtracking: n=300 took 6.5 seconds with mrv and forward checking
+        with default settings n=300 took significantly longer. (killed process)
 
-solution = backtracking_search(problem, inference=forward_checking)
-Time to complete:	0.0001316070556640625
+        with n = 4:
+        solution = backtracking_search(problem, select_unassigned_variable=mrv, inference=forward_checking)
+        Time to complete:	0.00018930435180664062
 
-solution = backtracking_search(problem, select_unassigned_variable=mrv)
-Time to complete:	0.00012350082397460938
+        solution = backtracking_search(problem, inference=forward_checking)
+        Time to complete:	0.0001316070556640625
 
-solution = backtracking_search(problem)
-Time to complete:	6.937980651855469e-05
+        solution = backtracking_search(problem, select_unassigned_variable=mrv)
+        Time to complete:	0.00012350082397460938
 
-The default select_unassigned_variable and inference values worked the best
+        solution = backtracking_search(problem)
+        Time to complete:	6.937980651855469e-05
 
+        mrv and forward checking does the best because it prunes illegal states quickly and reduces the search space
+        significantly by searching in the areas where the domains are the smallest first. With small n's, however,
+        the default settings were somewhat quicker, because of less overhead.
+
+    c.
+        min_conflicts requires at least 1 step, but the size of the solution space
+        determines the likelihood of a solution being stumbled upon.
 3.3
-"""This class describes finite-domain Constraint Satisfaction Problems.
-    A CSP is specified by the following inputs:
-        variables   A list of variables; each is atomic (e.g. int or string).
-        domains     A dict of {var:[possible_value, ...]} entries.
-        neighbors   A dict of {var:[var,...]} that for each variable lists
-                    the other variables that participate in constraints.
-        constraints A function f(A, a, B, b) that returns true if neighbors
-                    A, B satisfy the constraint when they have values A=a, B=b
+    a.
+        Both search.Problem and csp have a state. In search.Problem the state is a variable with a value or set of values
+        which may be closer or further away from the goal state. Csp has a state which is a list of variables, each containing
+        a domain of possible values.
+        Both have domains but CSPs have many variables each with their own domain, whereas search.Problem only has one domain
+        Both have action functions that return all the legal states from the current states and result functions that make
+        that change given a state and action.
+        Both csp and search.Problem have a goal_state test. The CSP is a little different in that it checks if constraints
+        are satisfied rather than if the goal value has been met.
+    b.
+        In trad search problems a heuristic such as check closest by distance solution (A*) or best first is used.
+        In csp heuristics such as forward checking, backtracking, and minimum remaining value.
+        mrv is like best first in that you are picking the most promising choice first, allowing you to eliminate that
+        option more quickly. Traditional search heuristics don't have as much "memory" or "forethought" as CSP heuristics.
 
-    In the textbook and in most mathematical definitions, the
-    constraints are specified as explicit pairs of allowable values,
-    but the formulation here is easier to express and more compact for
-    most cases. (For example, the n-Queens problem can be represented
-    in O(n) space using this notation, instead of O(N^4) for the
-    explicit representation.) In terms of describing the CSP as a
-    problem, that's all there is.
-
-    However, the class also supports data structures and methods that help you
-    solve CSPs by calling a search function on the CSP. Methods and slots are
-    as follows, where the argument 'a' represents an assignment, which is a
-    dict of {var:val} entries:
-        assign(var, val, a)     Assign a[var] = val; do other bookkeeping
-        unassign(var, a)        Do del a[var], plus other bookkeeping
-        nconflicts(var, val, a) Return the number of other variables that
-                                conflict with var=val
-        curr_domains[var]       Slot: remaining consistent values for var
-                                Used by constraint propagation routines.
-    The following methods are used only by graph_search and tree_search:
-        actions(state)          Return a list of actions
-        result(state, action)   Return a successor of state
-        goal_test(state)        Return true if all constraints satisfied
-    The following are just for debugging purposes:
-        nassigns                Slot: tracks the number of assignments made
-        display(a)              Print a human-readable representation
-    """

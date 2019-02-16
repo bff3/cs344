@@ -6,33 +6,33 @@ These calls are mostly copied/adapted from AIMA Python.
 @version 14feb2013
 '''
 
-from tools.aima.csp import backtracking_search, NQueensCSP, min_conflicts, mrv, \
+from csp import backtracking_search, NQueensCSP, min_conflicts, mrv, \
     forward_checking, AC3
 from tools.aima.search import depth_first_graph_search
 import logging
 from time import time
 
 # 1. Set up the problem.
-n = 4
+n = 300
 problem = NQueensCSP(n)
 
 # 2. Solve the problem.
 # There is a bug in the DFS code (even for 1-queens), so skip this one.
-#solution = depth_first_graph_search(problem)
+# solution = depth_first_graph_search(problem)
 
 # t0 = time()
 # solution = AC3(problem);
 # t = time() - t0
 
 t0 = time()
-#solution = backtracking_search(problem, select_unassigned_variable=mrv, inference=forward_checking)
-#solution = backtracking_search(problem, inference=forward_checking)
-#solution = backtracking_search(problem, select_unassigned_variable=mrv)
+# solution = backtracking_search(problem, select_unassigned_variable=mrv, inference=forward_checking)
+# solution = backtracking_search(problem, inference=forward_checking)
+# solution = backtracking_search(problem, select_unassigned_variable=mrv)
 solution = backtracking_search(problem)
 t = time() - t0
 
 # t0 = time()
-# solution = min_conflicts(problem, max_steps=1)
+# solution = min_conflicts(problem, max_steps=3000)
 # t = time() - t0
 
 # 3. Print the results.
