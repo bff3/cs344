@@ -17,9 +17,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/cs344$sudoku.coverage" NAME="sudoku Coverage Results" MODIFIED="1550349326486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lab03" />
-    <SUITE FILE_PATH="coverage/cs344$cs344_code.coverage" NAME="cs344-code Coverage Results" MODIFIED="1550631918062" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/cs344$homework01.coverage" NAME="homework01 Coverage Results" MODIFIED="1550813209092" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/homework01" />
+    <SUITE FILE_PATH="coverage/cs344$cs344_code.coverage" NAME="cs344-code Coverage Results" MODIFIED="1550631918062" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/cs344$sudoku.coverage" NAME="sudoku Coverage Results" MODIFIED="1550349326486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lab03" />
     <SUITE FILE_PATH="coverage/cs344$queens.coverage" NAME="queens Coverage Results" MODIFIED="1550347204725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lab03" />
   </component>
   <component name="DatabaseView">
@@ -160,6 +160,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-2" />
+    <option name="y" value="25" />
     <option name="width" value="1284" />
     <option name="height" value="1007" />
   </component>
