@@ -1,23 +1,23 @@
-from csp import parse_neighbors, min_conflicts, CSP, UniversalDict, different_values_constraint
+from csp import parse_neighbors, CSP, min_conflicts
+import itertools
 
-
-def Zebra():
+def Scheduling():
     """Return an instance of the Zebra Puzzle."""
     Faculty = 'Adams Schuurman VanderLinden Bailey'.split()
     Times = 'mwf900 mwf1030 tth900 tth1030'.split()
-    Classroom = 'nh253 sb382'.split()
-    variables = Faculty + Times + Classroom
+    Classrooms = 'nh253 sb382'.split()
+    Courses = 'cs104 cs108 cs112 cs212 cs214 cs336 cs344'.split()
+    variables = Courses
     domains = {}
+    combo = list(itertools.product(Times, Faculty, Classrooms))
     for var in variables:
-        domains[var] = list(range(1, 7))
+        domains[var] = combo
 
-    domains['Adams'] = [1, 5]
-    domains['Schuurman'] = [2, 6]
-    domains['Bailey'] = [3]
-    domains['VanderLinden'] = [4]
+    # domains['Adams1'] = [1, 5]
 
-    neighbors = parse_neighbors("""Bailey: mwf900; Adams: tth900""", variables)
-    for type in [Faculty, Times, Classroom]:
+    # neighbor parsing -- not implemented
+    neighbors = parse_neighbors("""cs104: cs108; cs344: cs336""", variables)
+    for type in [Courses, Faculty, Times, Classrooms]:
         for A in type:
             for B in type:
                 if A != B:
@@ -26,32 +26,27 @@ def Zebra():
                     if A not in neighbors[B]:
                         neighbors[B].append(A)
 
-    def zebra_constraint(A, a, B, b, recurse=0):
-        same = (a == b)
-        next_to = abs(a - b) == 1
-        if A == 'Adams' and B == 'tth900':
-            return same
-        if A == 'Bailey' and B == 'mwf900':
-            return same
+    def constraint(A, a, B, b, recurse=0):
+        # a room can only have one class at each time
+        same_timespace = (a[0] == b[0] and a[2] == b[2])
+        # faculty member can only teach one thing at a time
+        same_profslot = (a[0] == b[0] and a[1] == b[1])
         if recurse == 0:
-            return zebra_constraint(B, b, A, a, 1)
-        if ((A in Faculty and B in Faculty) or
-                (A in Times and B in Times) or
-                (A in Classroom and B in Classroom)):
-            return not same
-        raise Exception('error')
-    return CSP(variables, domains, neighbors, zebra_constraint)
+            return constraint(B, b, A, a, 1)
+        return not (same_timespace or same_profslot)
 
+    return CSP(variables, domains, neighbors, constraint)
 
-def solve_zebra(algorithm=min_conflicts, **args):
-    z = Zebra()
+def solve_Scheduling(algorithm=min_conflicts, **args):
+    z = Scheduling()
     ans = algorithm(z, **args)
-    for h in range(1, 7):
-        print('CS', h, end=' ')
+    Courses = 'cs104 cs108 cs112 cs212 cs214 cs336 cs344'.split()
+    for h in Courses:
+        print(h, end=' ')
         for (var, val) in ans.items():
-            if val == h:
-                print(var, end=' ')
+            if var == h:
+                print(val, end=' ')
         print()
-    return ans['Bailey'], ans['tth1030'], z.nassigns, ans
+    return ans
 
-print(solve_zebra())
+print(solve_Scheduling())
