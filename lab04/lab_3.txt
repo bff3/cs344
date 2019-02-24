@@ -1,0 +1,24 @@
+4.3
+
+    a)
+
+        User                    |      - User
+        test = 0.089*0.99                test = (1-0.089)*(1-0.98)
+        -test = 0.089*(1-0.99)           -test = (1-0.089)*(0.98)
+        P(test) = 0.089*0.99 + (1-0.089)*(1-0.98) = 0.106
+
+
+        i.
+            P(User) = 0.089
+        ii.
+            P(test|user) = 0.99
+        iii.
+            P(-test|user) = 1-0.99 = 0.01
+        iv.
+            P(test|-user) = 1 - 0.98 = 0.02
+        v.
+            P(User|test) = \frac{P(test|user)P(User)}{P(test)} = \frac{(0.99)(0.089)}{0.106} = 0.83
+
+    b)  # odds she has cancer given positive mmgm
+        P(cancer|mammography) = \frac{P(mammography|cancer)P(cancer}{P(mammography)}
+        = \frac{(0.8)(0.01)}{0.99*0.096+0.01*0.8)} = 0.077
