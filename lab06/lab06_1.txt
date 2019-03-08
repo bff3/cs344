@@ -1,0 +1,37 @@
+Ben Fynan "I work faster alone, or something"
+
+------------------------------------------------------------------------------------------
+
+Determine if a photograph is a picture of a hotdog or not
+
+Given a good quality picture of a hotdog (which takes up most of the picture),
+the algorithm will tell the user if the picture is a picture of a hotdog
+
+The percent of pictures (of sufficient quality) that are incorrectly identified.
+There will be a set of known photos for testing.
+
+97% correct identification of test pictures
+
+It correctly identifies less than 97% of test photos
+
+A boolean: 'is a hotdog' or 'not a hotdog'
+
+True/False
+
+to operate at real time
+
+Filtering pictures of hotdogs out of content
+
+Look at metadata such as tags or large quantities of red and wheat-color in the pictures
+
+
+----------------------------------------------------------------------------------------
+input, output
+Photograph of hotdog, isHotdog
+Photograph of something not a hotdog, isNotHotdog
+
+user can mark photos of hotdogs that get through the filter to add them to the model
+input0, input1, output
+photo, tag, is(not)hotdog
+
+Use photo tags for reinforcing identification
