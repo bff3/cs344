@@ -1,1 +1,10 @@
 
+Remainder(hungry) = 5/12 I(1/5,4/5)+7/12 I(4/7,3/7)\
+=5/12*-(1/5*log2(1/5)+4/5*log2(4/5))+7/12-(4/7*log2(4/7)+3/7*log2(3/7)) = 1.87
+
+Gain(hungry) = 1 - 1.87 = 0.87
+
+Since Gain(type) = 1 - (2/12 I(1/2,1/2)+2/12 I(1/2,1/2)+4/12 I(2/4,2/4)+4/12 I(2/4,2/4) = 0
+and Gain(patrons) = 1-(2/12 I(0,1) + 4/12 I(1,0) + 6/12 I(2/6, 4/6) = 0.541
+
+Hungry? provides more information than either question given in class
