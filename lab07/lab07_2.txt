@@ -1,5 +1,49 @@
 a.
-textual data which applies discrete attributes to the data
-a number which tells you a quantity or magnitude
+catigorical data is textual data which applies discrete attributes to the data
+whereas numerical data is a number which tells you a quantity or magnitude, it's value may be discrete or continuous
 
 b.
+train_model(
+    learning_rate=0.00001,
+    steps=1000,
+    batch_size=1
+)
+
+RMSE (on training data):
+  period 00 : 225.63
+  period 01 : 214.42
+  period 02 : 204.04
+  period 03 : 195.87
+  period 04 : 188.83
+  period 05 : 182.45
+  period 06 : 177.62
+  period 07 : 173.38
+  period 08 : 170.08
+  period 09 : 168.34
+
+# more steps -> longer to train model -> better fit
+
+train_model(
+    learning_rate=0.00002,
+    steps=1000,
+    batch_size=5,
+    input_feature='population'
+)
+
+RMSE (on training data):
+  period 00 : 225.63
+  period 01 : 214.62
+  period 02 : 205.05
+  period 03 : 196.92
+  period 04 : 189.94
+  period 05 : 184.90
+  period 06 : 180.76
+  period 07 : 178.24
+  period 08 : 176.63
+  period 09 : 175.93
+
+c.
+learning rate, steps, batch_size, input_feature. There is no standard way of tuning them. Some rules of thumb
+are: if model doesn't converge try training it for longer, if training error varries try decreasing the learning rate,
+small batch size causes instability.
+

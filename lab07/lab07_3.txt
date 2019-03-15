@@ -1,0 +1,63 @@
+
+a.
+1.
+california_housing_dataframe["rooms_per_person"] = (california_housing_dataframe['total_rooms']/california_housing_dataframe['population'])
+
+calibration_data = train_model(
+    learning_rate=0.9,
+    steps=500,
+    batch_size=5,
+    input_feature="rooms_per_person"
+)
+
+Training model...
+RMSE (on training data):
+  period 00 : 138.61
+  period 01 : 147.15
+  period 02 : 136.20
+  period 03 : 135.46
+  period 04 : 130.25
+  period 05 : 125.66
+  period 06 : 124.94
+  period 07 : 130.83
+  period 08 : 125.76
+  period 09 : 124.97
+
+2.
+plt.figure(figsize=(15, 6))
+plt.subplot(1, 2, 1)
+plt.scatter(calibration_data["predictions"], calibration_data["targets"])
+
+3.
+california_housing_dataframe["rooms_per_person"] = (california_housing_dataframe["total_rooms"] / california_housing_dataframe["population"])
+california_housing_dataframe["rooms_per_person"] = california_housing_dataframe["rooms_per_person"].apply(lambda x: min(x, 5))
+california_housing_dataframe["rooms_per_person"].hist()
+
+calibration_data = train_model(
+    learning_rate=0.9,
+    steps=500,
+    batch_size=5,
+    input_feature="rooms_per_person"
+)
+
+Training model...
+RMSE (on training data):
+  period 00 : 108.05
+  period 01 : 109.09
+  period 02 : 108.61
+  period 03 : 107.59
+  period 04 : 107.58
+  period 05 : 108.81
+  period 06 : 108.39
+  period 07 : 108.14
+  period 08 : 113.21
+  period 09 : 108.05
+Model training finished.
+
+plt.scatter(calibration_data["predictions"], calibration_data["targets"])
+
+b.
+useful if we want to find the relationship between a function of features and the label.
+
+c.
+clip them away and focus on the bulk of the data

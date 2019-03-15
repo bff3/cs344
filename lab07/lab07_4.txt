@@ -1,0 +1,14 @@
+a.
+1.
+median income is not clear what scale is used
+max house value is 500.0 which does not seem organic
+rooms per person has some unrealistic large outliers
+
+2.
+splitting California along a simple line will result with two dataframes with different statistical characteristics
+since housing values in California are not distrobuted evenly
+
+3.
+randomizing the dataset befor chopping it in half gives two sets with aproximatly the same characteristics
+
+4.
