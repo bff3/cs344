@@ -1,0 +1,11 @@
+a.
+cities['Is wide and has saint name'] = (cities['Area square miles'] > 50) & cities['City name'].apply(lambda name: name.startswith('San'))
+# ----- assign value to this key --- boolean return cityname if area greater than 50 ---- return name if name starts with 'San'
+cities
+
+b.
+cities.reindex([3, 0, 4, 1])
+pandas allows for indecies that do not exist. It either assigns the index or creates a row of NaN
+
+c.
+If you need random values from your data frame

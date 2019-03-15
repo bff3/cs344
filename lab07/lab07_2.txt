@@ -1,0 +1,5 @@
+a.
+textual data which applies discrete attributes to the data
+a number which tells you a quantity or magnitude
+
+b.
