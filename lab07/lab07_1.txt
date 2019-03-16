@@ -11,4 +11,4 @@ pandas adds the series object which is more flexible than a numpy ndarray. Panda
 dataframe operations.
 
 c.
-If you need random values from your data frame to train a model
+If you need shuffle your dataset before splitting it into training set and test sets
