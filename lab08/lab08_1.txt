@@ -1,0 +1,75 @@
+a.
+the Pearson correlation coefficient measures the correlation of a feature and target.
+median_income and longitude have a correlation of 0.0 which makes sense since there are expensive houses
+in different parts of California. One might expect some correlation on coastal cities because waterfront
+property is more valuable, but because LA and SF are separated by longitude it will reduce the correlation.
+
+b.
+1.
+#
+minimal_features = ['median_income', 'rooms_per_person', 'latitude']
+
+assert minimal_features, "You must select at least one feature!"
+
+minimal_training_examples = training_examples[minimal_features]
+minimal_validation_examples = validation_examples[minimal_features]
+
+#
+# Don't forget to adjust these parameters.
+#
+train_model(
+    learning_rate=0.01,
+    steps=500,
+    batch_size=5,
+    training_examples=minimal_training_examples,
+    training_targets=training_targets,
+    validation_examples=minimal_validation_examples,
+    validation_targets=validation_targets)
+
+Training model...
+RMSE (on training data):
+  period 00 : 165.92
+  period 01 : 123.97
+  period 02 : 117.15
+  period 03 : 116.99
+  period 04 : 115.56
+  period 05 : 115.14
+  period 06 : 115.26
+  period 07 : 114.40
+  period 08 : 113.66
+  period 09 : 113.10
+
+2.
+
+training_examples['distance_from_san_francisco'] = np.fabs(training_examples['latitude'] - 38)
+validation_examples['distance_from_san_francisco'] = np.fabs(validation_examples['latitude'] - 38)
+minimal_features = ['distance_from_san_francisco'
+]
+
+minimal_training_examples = training_examples[minimal_features]
+minimal_validation_examples = validation_examples[minimal_features]
+
+_ = train_model(
+    learning_rate=0.1,
+    steps=500,
+    batch_size=5,
+    training_examples=minimal_training_examples,
+    training_targets=training_targets,
+    validation_examples=minimal_validation_examples,
+    validation_targets=validation_targets)
+
+Training model...
+RMSE (on training data):
+  period 00 : 183.72
+  period 01 : 155.39
+  period 02 : 147.58
+  period 03 : 144.60
+  period 04 : 141.32
+  period 05 : 138.93
+  period 06 : 135.64
+  period 07 : 132.83
+  period 08 : 130.08
+  period 09 : 129.17
+Model training finished.
+
+b.
