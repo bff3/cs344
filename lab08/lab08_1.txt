@@ -72,4 +72,3 @@ RMSE (on training data):
   period 09 : 129.17
 Model training finished.
 
-b.

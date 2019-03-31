@@ -1,0 +1,60 @@
+a.
+by specifying the optimizer value for the linear_regressor with a FtrlOptimizer using the learning_rate
+
+b.
+some features may be recorded with more precision than is necessary. There may not be many values recorded,
+so bucketization can give appropriate weight to the recorded values.
+Bucketizing into discrete values speeds up the model's learning.
+
+c.
+1.
+  #
+  # YOUR CODE HERE: bucketize the following columns, following the example above:
+  #
+  bucketized_latitude = tf.feature_column.bucketized_column(
+    latitude, boundaries=get_quantile_based_boundaries(
+      training_examples["latitude"], 10))
+  bucketized_housing_median_age = tf.feature_column.bucketized_column(
+    housing_median_age, boundaries=get_quantile_based_boundaries(
+      training_examples["housing_median_age"], 7))
+  bucketized_median_income = tf.feature_column.bucketized_column(
+    median_income, boundaries=get_quantile_based_boundaries(
+      training_examples["median_income"], 7))
+  bucketized_rooms_per_person = tf.feature_column.bucketized_column(
+    rooms_per_person, boundaries=get_quantile_based_boundaries(
+      training_examples["rooms_per_person"], 7))
+
+  Training model...
+RMSE (on training data):
+  period 00 : 169.09
+  period 01 : 142.87
+  period 02 : 126.46
+  period 03 : 115.38
+  period 04 : 107.46
+  period 05 : 101.67
+  period 06 : 97.16
+  period 07 : 93.58
+  period 08 : 90.70
+  period 09 : 88.31
+Model training finished.
+
+2.
+  # YOUR CODE HERE: Make a feature column for the long_x_lat feature cross
+  long_x_lat = tf.feature_column.crossed_column(
+  set([bucketized_longitude, bucketized_latitude]), hash_bucket_size=1000)
+
+Training model...
+RMSE (on training data):
+  period 00 : 169.08
+  period 01 : 142.86
+  period 02 : 126.52
+  period 03 : 115.38
+  period 04 : 107.59
+  period 05 : 101.76
+  period 06 : 97.23
+  period 07 : 93.62
+  period 08 : 90.74
+  period 09 : 88.37
+Model training finished.
+
+feature crossing did not seem to improve results
