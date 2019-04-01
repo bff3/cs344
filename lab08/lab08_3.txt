@@ -1,2 +1,17 @@
 a.
+seaborn extends Matplotlib, seaborn makes styling easier and displaying statistical data in different formats.
+Matplotlib is a good basic plotting tool which can do more complicated plots, bot not easily.
 
+b.
+this set has 397 examples which should be enough considering this is a predictive model not a categorization model.
+The data looks to be of good quality without very many outliers.
+
+c.
+it sets the same range for each variable, thereby increasing the chances of convergence.
+
+d.
+no this is a sequential model which is a linear stack of layers.
+
+e.
+yes, because larger networks may overfit to the peculiarities of a dataset, and smaller networks don't have the excess
+perceptrons to learn the specific characteristics of that training set.
