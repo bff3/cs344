@@ -1,0 +1,8 @@
+a.
+model has an mean squared error of 0.45 (which doesn't improve with training) which in a probability distribution is quite high.
+
+b.
+L2 loss squares the error, where log loss uses the log function to more heavily penalise misclassifications
+in the 0<P<1 range.
+
+c.
