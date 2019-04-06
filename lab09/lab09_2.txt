@@ -1,0 +1,32 @@
+a.
+in columns where examples are sparse and you cross them with other features, you get a lot of entries without meaningful
+value. Since this can cause overfitting the data must be regularized.
+
+b.
+L1 effectively subtracts a constant weight each time the model is regressed which results in weights of 0.0 for small
+values
+
+c.
+linear_classifier = train_linear_classifier_model(
+    learning_rate=0.1,
+    regularization_strength=0.1,
+    steps=300,
+    batch_size=100,
+    feature_columns=construct_feature_columns(),
+    training_examples=training_examples,
+    training_targets=training_targets,
+    validation_examples=validation_examples,
+    validation_targets=validation_targets)
+print("Model size:", model_size(linear_classifier))
+
+Training model...
+LogLoss (on validation data):
+  period 00 : 0.32
+  period 01 : 0.29
+  period 02 : 0.27
+  period 03 : 0.27
+  period 04 : 0.26
+  period 05 : 0.26
+  period 06 : 0.25
+Model training finished.
+Model size: 747
