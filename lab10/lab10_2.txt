@@ -1,0 +1,62 @@
+a.
+optimizes the learning rates for each coefficient in a model.
+
+b.
+1.
+# Your code here: normalize the inputs.
+processed_features = pd.DataFrame()
+processed_features["latitude"] = linear_scale(examples_dataframe["latitude"])
+processed_features["longitude"] = linear_scale(examples_dataframe["longitude"])
+processed_features["housing_median_age"] = linear_scale(examples_dataframe["housing_median_age"])
+processed_features["total_rooms"] = linear_scale(examples_dataframe["total_rooms"])
+processed_features["total_bedrooms"] = linear_scale(examples_dataframe["total_bedrooms"])
+processed_features["population"] = linear_scale(examples_dataframe["population"])
+processed_features["households"] = linear_scale(examples_dataframe["households"])
+processed_features["median_income"] = linear_scale(examples_dataframe["median_income"])
+processed_features["rooms_per_person"] = linear_scale(examples_dataframe["rooms_per_person"])
+return processed_features
+
+Training model...
+RMSE (on training data):
+  period 00 : 229.75
+  period 01 : 205.46
+  period 02 : 157.81
+  period 03 : 118.67
+  period 04 : 115.07
+  period 05 : 111.27
+  period 06 : 106.80
+  period 07 : 101.79
+  period 08 : 95.85
+  period 09 : 89.63
+Model training finished.
+Final RMSE (on training data):   89.63
+Final RMSE (on validation data): 90.67
+
+2.
+_ = train_nn_regression_model(
+    my_optimizer=tf.train.AdagradOptimizer(learning_rate=0.5),
+    steps=5000,
+    batch_size=70,
+    hidden_units=[10, 10],
+    training_examples=normalized_training_examples,
+    training_targets=training_targets,
+    validation_examples=normalized_validation_examples,
+    validation_targets=validation_targets)
+
+Final RMSE (on training data):   64.14
+Final RMSE (on validation data): 64.28
+
+_ = train_nn_regression_model(
+    my_optimizer=tf.train.AdamOptimizer(learning_rate=0.005),
+    steps=5000,
+    batch_size=70,
+    hidden_units=[10, 10],
+    training_examples=normalized_training_examples,
+    training_targets=training_targets,
+    validation_examples=normalized_validation_examples,
+    validation_targets=validation_targets)
+
+Final RMSE (on training data):   65.41
+Final RMSE (on validation data): 65.99
+
+3.
