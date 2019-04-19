@@ -1,0 +1,70 @@
+a)
+DNN with too many hidden layers can overfit your training data.
+it was also much slower to train.
+
+b)
+The linear model does better on the training set but worse on the test set. The DNN also has less loss.
+
+c)
+yes because their may be a sparse spreading of different sentiments across many dimensions. Embeddings efficiently
+encode this information.
+
+d)
+disappointing and poor would likely both show up in a negative review.
+
+e)
+
+Training set metrics:
+loss 10.415099
+accuracy_baseline 0.5
+global_step 1000
+recall 0.81616
+auc 0.89199275
+prediction/mean 0.49561724
+precision 0.81479114
+label/mean 0.5
+average_loss 0.41660398
+auc_precision_recall 0.88783544
+accuracy 0.81532
+---
+Test set metrics:
+loss 10.985683
+accuracy_baseline 0.5
+global_step 1000
+recall 0.79568
+auc 0.8778676
+prediction/mean 0.4961044
+precision 0.80074066
+label/mean 0.5
+average_loss 0.43942735
+auc_precision_recall 0.8732013
+accuracy 0.79884
+
+Training set metrics:
+loss 17.472023
+accuracy_baseline 0.5
+global_step 1000
+recall 1.0
+auc 0.50008
+prediction/mean 0.55367494
+precision 0.5
+label/mean 0.5
+average_loss 0.6988809
+auc_precision_recall 0.62508994
+accuracy 0.5
+---
+Test set metrics:
+loss 17.473272
+accuracy_baseline 0.5
+global_step 1000
+recall 1.0
+auc 0.5
+prediction/mean 0.55363226
+precision 0.5
+label/mean 0.5
+average_loss 0.69893086
+auc_precision_recall 0.75
+accuracy 0.5
+
+Adam was worse than Adagrad
+

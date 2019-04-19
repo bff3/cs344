@@ -1,0 +1,33 @@
+classifier = train_linear_classification_model(
+             learning_rate=0.02,
+             steps=100,
+             batch_size=10,
+             training_examples=training_examples,
+             training_targets=training_targets,
+             validation_examples=validation_examples,
+             validation_targets=validation_targets)
+
+Training model...
+LogLoss error (on validation data):
+  period 00 : 17.48
+  period 01 : 13.64
+  period 02 : 9.57
+  period 03 : 8.51
+  period 04 : 7.67
+  period 05 : 7.58
+  period 06 : 7.16
+  period 07 : 6.91
+  period 08 : 7.02
+  period 09 : 6.52
+Model training finished.
+Final accuracy (on validation data): 0.81
+
+a)
+The confusion matrix shows the probability a given digit is classified as the correct or other digits.
+
+b)
+the tensorflow code specifies hidden units
+
+c)
+at 10 steps results are very fuzzy
+at 1000 steps we can see specific features like curves and lines
