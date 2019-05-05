@@ -1,0 +1,34 @@
+∀
+∃
+¬
+∧
+∨
+∴
+
+on(A, B)
+on(B, C)
+supports(table, C)
+
+∀ x,y supports(x,y) ⇒ on(y,x) ∧ x ≠ y
+
+∀ x,y on(x,y) ⇒ above(x,y)
+
+∀ x,y,z above(x,y) ∧ above(y,z)  ⇒ above(x,z)
+
+supports(table, C):
+∴ on(C, table)
+
+on(C,table):
+∴ above(C, table)
+
+on(B, C):
+∴ above(B, C)
+
+above(B,C) ∧ above(C, table):
+∴ above(B, table)
+
+on(A, B):
+∴ above(A, B)
+
+above(A,B) ∧ above(B, table):
+∴ above(A, table)
