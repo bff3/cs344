@@ -1,3 +1,6 @@
+InceptionV3
+Pretrained on ImageNet
+
 BS = 16
 
 Epoch 1/12
@@ -57,3 +60,14 @@ Epoch 15/15
 966/966 [==============================] - 16s 16ms/step - loss: 0.4248 - acc: 0.8665
 
 [8.859947086120984, 0.4503105590062112]
+
+Running InceptionV3 without pretraining resulted in loss, acc =
+[2.7276356393826338, 0.1498929336347978]
+
+BS = 2
+
+[11.63125941176486, 0.2783725913893232]
+
+using large Batch size resulted in good fit on training set but low fit with test set
+
+Large batch size, with preprocessing, low fit
